@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Genres = sequelize.define('Genres', {
+  const Genre = sequelize.define('Genre', {
       id: {
         type: DataTypes.INTEGER(11).UNSIGNED,
         autoIncrement: true,
@@ -18,12 +18,13 @@ module.exports = function(sequelize, DataTypes) {
         values: ['Draft', 'Published', 'Archived', 'Deleted'],
         defaultValue: 'Published'
       }
-    },
-    {
-      tableName: 'genres'
     }
   );
 
-  return Genres;
+  Genre.associate = function() {
+
+  };
+
+  return Genre;
 };
 

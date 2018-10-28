@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncHandler = require('../helpers/asyncHandler');
 const httpRequest = require('request-promise-native');
 
-const { Songs, Genres, Sequelize } = require('../models');
+const { Song, Genre, Sequelize } = require('../models');
 const { Op } = Sequelize;
 const ApiError = require('../helpers/error/apiError');
 
@@ -37,7 +37,7 @@ router.post('/', asyncHandler(async function(req, res) {
 
   const standardThumbnails = thumbnails.standard;
 
-  const song = await Songs.create({
+  const song = await Song.create({
     title,
     thumbnailUri: standardThumbnails.url,
     videoId: req.body.videoId,
@@ -62,10 +62,10 @@ router.get('/', asyncHandler(async function(req, res) {
   // Filter
   if (req.query.genreId) Object.assign(where, { genreId: req.query.genreId });
 
-  const songs = await Songs.findAndCountAll({
+  const songs = await Song.findAndCountAll({
     where,
     include: [
-      { model: Genres, as: 'genre' }
+      { model: Genre, as: 'genre' }
     ],
     order: [['id', 'DESC']],
     limit: limit,

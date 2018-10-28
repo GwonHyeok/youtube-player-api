@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Songs = sequelize.define('Songs', {
+  const Song = sequelize.define('Song', {
       id: {
         type: DataTypes.INTEGER(11).UNSIGNED,
         autoIncrement: true,
@@ -15,11 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       genreId: {
         type: DataTypes.INTEGER(11).UNSIGNED,
-        allowNull: false,
-        references: {
-          key: 'id',
-          model: 'Genres'
-        }
+        allowNull: false
       },
       duration: {
         type: DataTypes.STRING
@@ -32,16 +28,18 @@ module.exports = function(sequelize, DataTypes) {
         values: ['Draft', 'Published', 'Archived', 'Deleted'],
         defaultValue: 'Published'
       }
-    },
-    {
-      tableName: 'songs'
     }
   );
 
-  Songs.associate = function({ Genres }) {
-    Songs.belongsTo(Genres, { as: 'genre' })
+  Song.associate = function({ Genre }) {
+    Song.belongsTo(Genre, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    })
   };
 
-  return Songs;
+  return Song;
 };
 

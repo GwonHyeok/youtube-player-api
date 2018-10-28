@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Genres } = require('../models');
+const { Genre } = require('../models');
 const asyncHandler = require('../helpers/asyncHandler');
 
 // 장르 생성
@@ -10,7 +10,7 @@ router.post('/', asyncHandler(async function(req, res) {
 
 // 장르 리스트
 router.get('/', asyncHandler(async function(req, res) {
-  const genres = await Genres.findAll({ where: { states: 'Published' } });
+  const genres = await Genre.findAll({ where: { states: 'Published' } });
   res.json({ data: genres })
 }));
 

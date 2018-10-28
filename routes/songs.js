@@ -65,7 +65,7 @@ router.get('/', asyncHandler(async function(req, res) {
   const songs = await Song.findAndCountAll({
     where,
     include: [
-      { model: Genre, as: 'genre' }
+      { model: Genre }
     ],
     order: [['id', 'DESC']],
     limit: limit,

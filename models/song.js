@@ -13,10 +13,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true
       },
-      genreId: {
-        type: DataTypes.INTEGER(11).UNSIGNED,
-        allowNull: false
-      },
       duration: {
         type: DataTypes.STRING
       },

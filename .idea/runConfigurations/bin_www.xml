@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" path-to-js-file="bin/www">
+    <envs>
+      <env name="DEBUG" value="myplayerapi:*" />
+      <env name="YOUTUBE_API_KEY" value="AIzaSyB-BtilpvzjbRdHcJVD6FEXrEeU6e7Y7eA" />
+      <env name="DB_USERNAME" value="wwmuww" />
+      <env name="DB_PASSWORD" value="wwmuwwyoutubeplayer" />
+      <env name="DB_HOST" value="youtubeplayer.cgwc7exohv5n.ap-northeast-2.rds.amazonaws.com" />
+    </envs>
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
+      <browser url="http://localhost:3000/" />
+    </EXTENSION>
+    <method v="2" />
+  </configuration>
+</component>

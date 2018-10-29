@@ -97,6 +97,7 @@ router.get('/:id', asyncHandler(async function(req, res) {
 
 router.put('/:id', asyncHandler(async function(req, res) {
   const song = await Song.findOne({ where: { id: req.params.id } });
+  await song.update(req.body);
   res.json({ data: song });
 }));
 

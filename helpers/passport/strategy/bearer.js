@@ -16,7 +16,7 @@ class LocalStrategy extends HttpBearerStrategyInterface {
         if (!accessToken) return done(new Error('인증 정보가 없습니다'));
 
         // User
-        const user = await User.findOne({ where: { id: accessToken.userId } });
+        const user = await User.findOne({ where: { id: accessToken.UserId } });
         return done(null, user);
       } catch (e) {
         return done(e)

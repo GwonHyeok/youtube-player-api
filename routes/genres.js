@@ -33,10 +33,9 @@ router.post('/', upload.single('thumbnail'), asyncHandler(async function(req, re
 
 // 장르 리스트
 router.get('/', asyncHandler(async function(req, res) {
-
   const where = {};
 
-  if (req.isAuthenticated() && req.user.isAdmin()) {
+  if (req.user && req.user.isAdmin()) {
     where.states = { [Op.notIn]: ['Deleted'] };
   } else {
     where.states = 'Published';

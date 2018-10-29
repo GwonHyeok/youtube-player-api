@@ -1,10 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   const Genre = sequelize.define('Genre', {
-      id: {
-        type: DataTypes.INTEGER(11).UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true
-      },
       title: {
         type: DataTypes.STRING,
         allowNull: false

@@ -35,13 +35,12 @@ router.post('/', asyncHandler(async function(req, res) {
   const { title, thumbnails } = snippet;
   const { duration } = contentDetails;
 
-  const standardThumbnails = thumbnails.standard;
-
+  const standardThumbnails = thumbnails[Object.keys(thumbnails).reverse().pop()];
   const song = await Song.create({
     title,
     thumbnailUri: standardThumbnails.url,
     videoId: req.body.videoId,
-    genreId: req.body.genreId,
+    GenreId: req.body.GenreId,
     duration
   });
 
@@ -55,8 +54,16 @@ router.get('/', asyncHandler(async function(req, res) {
 
   const where = {};
 
+  // 키워드
   if (req.query.keyword) {
     Object.assign(where, { title: { [Op.like]: `%${req.query.keyword}%` } })
+  }
+
+  // 음악 조건절 추가
+  if (req.user && req.user.isAdmin()) {
+    where.states = { [Op.notIn]: ['Deleted'] };
+  } else {
+    where.states = 'Published';
   }
 
   // Filter

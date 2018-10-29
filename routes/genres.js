@@ -46,7 +46,8 @@ router.get('/:id', asyncHandler(async function(req, res) {
 router.put('/:id', upload.single('thumbnail'), asyncHandler(async function(req, res) {
   if (req.file) req.body.thumbnailUri = req.file.location;
 
-  const genre = await Genre.update({ where: { id: req.params.id } }, req.body);
+  const genre = await Genre.findOne({ where: { id: req.params.id } });
+  await genre.update(req.body);
   res.json({ data: genre })
 }));
 

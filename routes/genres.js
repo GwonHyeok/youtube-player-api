@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { Genre } = require('../models');
+const { Genre, Sequelize } = require('../models');
+const { Op } = Sequelize;
 const asyncHandler = require('../helpers/asyncHandler');
 
 // Uploader
@@ -32,8 +33,17 @@ router.post('/', upload.single('thumbnail'), asyncHandler(async function(req, re
 
 // 장르 리스트
 router.get('/', asyncHandler(async function(req, res) {
+
+  const where = {};
+
+  if (req.isAuthenticated() && req.user.isAdmin()) {
+    where.states = { [Op.notIn]: ['Deleted'] };
+  } else {
+    where.states = 'Published';
+  }
+
   const genres = await Genre.findAll({
-    where: { states: 'Published' },
+    where,
     order: [['id', 'DESC']],
   });
   res.json({ data: genres })

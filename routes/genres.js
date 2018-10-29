@@ -32,7 +32,10 @@ router.post('/', upload.single('thumbnail'), asyncHandler(async function(req, re
 
 // 장르 리스트
 router.get('/', asyncHandler(async function(req, res) {
-  const genres = await Genre.findAll({ where: { states: 'Published' } });
+  const genres = await Genre.findAll({
+    where: { states: 'Published' },
+    order: [['id', 'DESC']],
+  });
   res.json({ data: genres })
 }));
 

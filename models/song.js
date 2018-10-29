@@ -1,10 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   const Song = sequelize.define('Song', {
-      id: {
-        type: DataTypes.INTEGER(11).UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true
-      },
       title: {
         type: DataTypes.STRING
       },

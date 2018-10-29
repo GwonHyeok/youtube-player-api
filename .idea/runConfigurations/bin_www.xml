@@ -6,6 +6,7 @@
       <env name="DB_USERNAME" value="wwmuww" />
       <env name="DB_PASSWORD" value="wwmuwwyoutubeplayer" />
       <env name="DB_HOST" value="youtubeplayer.cgwc7exohv5n.ap-northeast-2.rds.amazonaws.com" />
+      <env name="JWT_SECRET_KEY" value="OK" />
     </envs>
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
       <browser url="http://localhost:3000/" />

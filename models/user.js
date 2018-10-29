@@ -3,6 +3,11 @@ const bCrypt = require('bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true
+    },
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.ENUM('user', 'admin')

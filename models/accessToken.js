@@ -1,6 +1,11 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   const AccessToken = sequelize.define('AccessToken', {
+    id: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true
+    },
     token: DataTypes.STRING
   });
 

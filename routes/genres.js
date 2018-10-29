@@ -14,4 +14,10 @@ router.get('/', asyncHandler(async function(req, res) {
   res.json({ data: genres })
 }));
 
+// 장르 상세보기
+router.get('/:id', asyncHandler(async function(req, res) {
+  const genre = await Genre.findOne({ where: { id: req.params.id } });
+  res.json({ data: genre })
+}));
+
 module.exports = router;

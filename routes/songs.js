@@ -9,6 +9,15 @@ const ApiError = require('../helpers/error/apiError');
 
 // 음악 셍성
 router.post('/', asyncHandler(async function(req, res) {
+
+  // 저장 되어 있는 음악인지 확인
+  const savedSong = await Song.findOne({
+    where: {
+      videoId: req.body.videoId
+    }
+  });
+  if (savedSong) throw new ApiError('이미 저장되어 있는 동영상 입니다', 403);
+
   let youtubeResponse;
 
   try {
